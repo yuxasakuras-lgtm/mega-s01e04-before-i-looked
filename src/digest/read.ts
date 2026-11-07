@@ -23,7 +23,7 @@ function isStatus(v: unknown): v is RunStatus {
  * bad, as types.ts says of any missing field. `error`, when present, must be a string. `at` must
  * parse to an instant, since rows are ordered by it.
  */
-function parseLine(text: string): { line: LogLine; instant: number } | null {
+export function parseLine(text: string): { line: LogLine; instant: number } | null {
   let v: unknown;
   try {
     v = JSON.parse(text);
