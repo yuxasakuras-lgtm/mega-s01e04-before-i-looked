@@ -15,7 +15,8 @@ in a shell this agent can run.
    One issue per unit of work.
 3. **Stop and show the table to the human.** Publish nothing until they approve it.
 4. Ask the human what every issue here must carry (fields, labels, wording), unless it is
-   already written down in this session or in the repo.
+   already written down in this session or in the repo. The shape below is written down: use
+   it, and ask only about anything the plan needs beyond it.
 5. Create each issue in dependency order, so blocked-by can cite real numbers:
 
    ```sh
@@ -23,6 +24,32 @@ in a shell this agent can run.
    ```
 
 6. Record every issue URL from gh's output (not from memory) and reply with the list.
+
+## Issue shape
+
+Approved by the human on 2026-11-07 (plan morning-digest). Every issue carries:
+
+- **Title:** short, names the unit of work (e.g. `Digest page: GET /digest/:night`).
+- **Label:** `plan:<plan name>` from `plan.md`'s frontmatter (e.g. `plan:morning-digest`). Create
+  the label first if the repo lacks it.
+- **Body**, in this order, the first line exactly as shown:
+
+  ```md
+  Source: plan.md § <n>
+
+  ## Scope
+  - <what this issue changes, one bullet per point, files named>
+
+  ## Done when
+  <the plan's "Done when" for this section, checkable>
+
+  ## Blocked by
+  <#n, #m — or — >
+  ```
+
+- `Blocked by` names real issue numbers, and also any outside event the issue waits on
+  (e.g. `#7, and the reviewer's review`). Add a note in brackets when an issue can start before a
+  blocker lands but cannot finish without it (e.g. `#1 (real rows need #2)`).
 
 Closing one, with the closing comment from AGENTS.md:
 
